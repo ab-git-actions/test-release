@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.3.0  # Import the Python orb
+
+jobs:
+  print_message:
+    executor: python/default  # Use the default executor provided by the Python orb
+    steps:
+      - checkout
+      - python/install-packages:  # Automatically installs dependencies (if you had any)
+          pkg-manager: pip
+      - run:
+          name: Run Python Script
+          command: python hello.py  # Run the Python script
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - print_message
